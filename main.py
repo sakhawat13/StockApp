@@ -107,7 +107,7 @@ if submit:
           gridOptions=options.build(),
           theme="dark",
           update_mode=GridUpdateMode.MODEL_CHANGED,
-          allow_unsafe_jscode=True,
+          allow_unsafe_jscode=False,
       )
       return selection
   selection = aggrid_interactive_table(df=merged)
