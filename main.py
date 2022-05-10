@@ -73,5 +73,50 @@ for index, item in enumerate(opt):
  
 st.write(opt)
 
+submit = st.button("Submit")
 
+if submit:
+  merged = pd.DataFrame()
+  for s in opt:
+      df4 = investpy.get_stock_historical_data(stock= s,
+                                        country='Bangladesh',
+                                        from_date="01/01/2007",
+                                        to_date= day)
+      df4["VolAvgNDays"] = df4["Volume"].rolling(15).mean()
+      df4 = df4[::-1]
+      df4["LP"] = df4["Close"].shift(-1)
+      df4["Change"] = ((df4["Close"]-df4["LP"])/df4["LP"])*100
+      df4 = df4[df4['VolAvgNDays'].notna()]
+      pred1 = clf.predict(df4[["Close","Volume","VolAvgNDays","Change"]])
+      df4["pred"] = pred1
+      df4["Name"] = s
+      df5 = df4.head(4)
+      merged = pd.concat([merged, df5], ignore_index=True)
 
+  def aggrid_interactive_table(df: pd.DataFrame):
+      """Creates an st-aggrid interactive table based on a dataframe.
+      Args:
+          df (pd.DataFrame]): Source dataframe
+      Returns:
+          dict: The selected row
+      """
+      options = GridOptionsBuilder.from_dataframe(
+          df, enableRowGroup=True, enableValue=True, enablePivot=True
+      )
+
+      options.configure_side_bar()
+
+      options.configure_selection("single")
+      selection = AgGrid(
+          df,
+          enable_enterprise_modules=True,
+          gridOptions=options.build(),
+          theme="dark",
+          update_mode=GridUpdateMode.MODEL_CHANGED,
+          allow_unsafe_jscode=True,
+      )
+      return selection
+  selection = aggrid_interactive_table(df=merged)
+  if selection:
+      st.write("You selected:")
+      st.json(selection["selected_rows"])
