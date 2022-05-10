@@ -111,6 +111,6 @@ if submit:
       )
       return selection
   selection = aggrid_interactive_table(df=merged)
-  if selection:
-      st.write("You selected:")
-      st.json(selection["selected_rows"])
+  #if selection:
+      #st.write("You selected:")
+      #st.json(selection["selected_rows"])
