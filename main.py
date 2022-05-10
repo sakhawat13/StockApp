@@ -25,7 +25,7 @@ clf = pickle.load(open(filename, 'rb'))
 
 # In[4]:
 
-
+st.title("Stock Prediction")
 
 
 today = datetime.date.today()
@@ -48,13 +48,7 @@ stock_df = investpy.get_stocks_overview(country="Bangladesh",
                         as_json=False, 
                         n_results=1000)
 
-data = investpy.get_stock_historical_data(stock='AAPL',
-                                        country='United States',
-                                        from_date='01/01/2010',
-                                        to_date='01/01/2020')
 
-
-st.write(data)
 # In[7]:
 
 #st = list[[]]
@@ -62,7 +56,7 @@ st.write(data)
 option = list(( stock_df["name"]).unique())
 
 opt = st.multiselect(
-     'Which companies would you like?',
+     'Which companies would you like?(can chose multiple)',
      (option))
 
 st.write('You selected:', opt)
