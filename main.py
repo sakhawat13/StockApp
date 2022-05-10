@@ -100,7 +100,7 @@ if submit:
 
       options.configure_side_bar()
 
-      options.configure_selection("single")
+      #options.configure_selection("single")
       selection = AgGrid(
           df,
           enable_enterprise_modules=True,
@@ -111,6 +111,6 @@ if submit:
       )
       return selection
   selection = aggrid_interactive_table(df=merged)
-  if selection:
-     st.write("You selected:")
-     st.json(selection["selected_rows"])
+  #if selection:
+     #st.write("You selected:")
+     #st.json(selection["selected_rows"])
