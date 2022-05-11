@@ -71,9 +71,9 @@ num_day = st.number_input('Number of days',5)
 
 
 submit = st.button("Submit")
-
+merged = pd.DataFrame()
 if submit:
-  merged = pd.DataFrame()
+  
   for s in opt:
       df4 = investpy.get_stock_historical_data(stock= s,
                                         country='Bangladesh',
