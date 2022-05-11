@@ -85,6 +85,7 @@ if submit:
       df4["pred"] = pred1
       df4["Name"] = s
       df5 = df4.head(4)
+      df5.reset_index(inplace=True)
       merged = pd.concat([merged, df5], axis=0)
       def aggrid_interactive_table(df: pd.DataFrame):
         """Creates an st-aggrid interactive table based on a dataframe.
