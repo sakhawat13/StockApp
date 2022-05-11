@@ -66,7 +66,7 @@ for index, item in enumerate(opt):
 
  
 st.write(opt)
-num_day = st.text_input('Number of days', 5)
+num_day = st.number_input('Number of days',5)
 
 
 
