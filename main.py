@@ -90,7 +90,7 @@ if submit:
       if df4.shape[0] < num_day:
             st.write("Sorry "+ num_day + "of data for this company isnt available")
       else:
-          df5 = df4.head(4)
+          df5 = df4.head(num_day)
           df5.reset_index(inplace=True)
           merged = pd.concat([merged, df5], axis=0)
           def aggrid_interactive_table(df: pd.DataFrame):
