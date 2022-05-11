@@ -88,7 +88,7 @@ if submit:
       df4["pred"] = pred1
       df4["Name"] = s
       if df4.shape[0] < num_day:
-            st.write("Sorry "+ num_day + "of data for this company isnt available")
+            st.write("Sorry "+ str(num_day) + "of data for this company isnt available")
       else:
           df5 = df4.head(num_day)
           df5.reset_index(inplace=True)
