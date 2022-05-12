@@ -95,6 +95,9 @@ if submit:
       else:
           df5 = df4.head(num_day)
           df5 = df5[["Name","pred","Open","High","Low","Close","Volume","Change","VolAvgNDays"]]
+          df5 = df5[::-1]
+          df5['pattern'] = df5.groupby((df5.pred != df.pred.shift()).cumsum()).cumcount()+1
+          df5 = df5[::-1]
           df5.reset_index(inplace=True)
           merged = pd.concat([merged, df5], axis=0)
           def aggrid_interactive_table(df: pd.DataFrame):
