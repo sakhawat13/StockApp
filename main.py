@@ -115,16 +115,16 @@ if submit:
                             }
                         };
                         """)  
-            
-
+            gridOptions=options.build()
+            gridOptions['getRowStyle'] = jscode
             options.configure_side_bar()
 
             #options.configure_selection("single")
             selection = AgGrid(
                 df,
                 enable_enterprise_modules=True,
-                gridOptions=options.build(),
-                gridOptions['getRowStyle'] = jscode,
+                gridOptions=gridOptions,
+                
                             
                 theme="dark",
                 update_mode=GridUpdateMode.MODEL_CHANGED,
