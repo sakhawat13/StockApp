@@ -105,6 +105,16 @@ if submit:
             options = GridOptionsBuilder.from_dataframe(
                 df, enableRowGroup=True, enableValue=True, enablePivot=True
             )
+            jscode = JsCode("""
+                        function(params) {
+                            if (params.data.pred === 1) {
+                                return {
+                                    'color': 'white',
+                                    'backgroundColor': 'green'
+                                }
+                            }
+                        };
+                        """)  
             
 
             options.configure_side_bar()
@@ -114,12 +124,8 @@ if submit:
                 df,
                 enable_enterprise_modules=True,
                 gridOptions=options.build(),
-                gridOptions.getRowStyle(params) {
-                  if (params.data.pred === 1) {
-                      return {'background-color': 'green'}
-                  }
-                  return null;
-                }            
+                gridOptions['getRowStyle'] = jscode
+                            
                 theme="dark",
                 update_mode=GridUpdateMode.MODEL_CHANGED,
                 allow_unsafe_jscode=True,
