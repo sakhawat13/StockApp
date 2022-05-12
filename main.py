@@ -134,12 +134,12 @@ if submit:
                 
                             
                 theme="dark",
-                update_mode=GridUpdateMode.MODEL_CHANGED,
+                #update_mode=GridUpdateMode.MODEL_CHANGED,
                 allow_unsafe_jscode=True,
             )
             return selection
-            selection = aggrid_interactive_table(df=merged)
-       #if selection:
-         #st.write("You selected:")
-         #st.json(selection["selected_rows"])
+        selection = aggrid_interactive_table(df=merged)
+   #if selection:
+     #st.write("You selected:")
+     #st.json(selection["selected_rows"])
 
