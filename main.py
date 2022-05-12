@@ -124,7 +124,7 @@ if submit:
                 df,
                 enable_enterprise_modules=True,
                 gridOptions=options.build(),
-                gridOptions['getRowStyle'] = jscode
+                gridOptions['getRowStyle'] = jscode,
                             
                 theme="dark",
                 update_mode=GridUpdateMode.MODEL_CHANGED,
