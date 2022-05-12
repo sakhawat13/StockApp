@@ -94,6 +94,7 @@ if submit:
             st.write("Sorry "+ str(num_day) + " days of data for this company isnt available")
       else:
           df5 = df4.head(num_day)
+          df5 = df5[["Name","pred","Open","High","Low","Close","Volume","Change","VolAvgNDays"]]
           df5.reset_index(inplace=True)
           merged = pd.concat([merged, df5], axis=0)
           def aggrid_interactive_table(df: pd.DataFrame):
@@ -112,6 +113,12 @@ if submit:
                                 return {
                                     'color': 'white',
                                     'backgroundColor': 'green'
+                                }
+                            }
+                            if (params.data.pred === -1) {
+                                return {
+                                    'color': 'white',
+                                    'backgroundColor': 'red'
                                 }
                             }
                         };
