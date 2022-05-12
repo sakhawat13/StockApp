@@ -127,6 +127,7 @@ if submit:
             gridOptions['getRowStyle'] = jscode
             options.configure_side_bar()
             #options.configure_selection("single")
+            
             selection = AgGrid(
                 df,
                 enable_enterprise_modules=True,
