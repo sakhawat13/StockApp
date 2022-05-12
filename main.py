@@ -105,12 +105,7 @@ if submit:
             options = GridOptionsBuilder.from_dataframe(
                 df, enableRowGroup=True, enableValue=True, enablePivot=True
             )
-            gridOptions.getRowStyle(params) {
-                if (params.data.pred === 1) {
-                    return {'background-color': 'green'}
-                }
-                return null;
-            }            
+            
 
             options.configure_side_bar()
 
@@ -119,6 +114,12 @@ if submit:
                 df,
                 enable_enterprise_modules=True,
                 gridOptions=options.build(),
+                gridOptions.getRowStyle(params) {
+                  if (params.data.pred === 1) {
+                      return {'background-color': 'green'}
+                  }
+                  return null;
+                }            
                 theme="dark",
                 update_mode=GridUpdateMode.MODEL_CHANGED,
                 allow_unsafe_jscode=True,
