@@ -14,6 +14,7 @@ from sklearn.preprocessing import LabelEncoder
 import streamlit as st
 from st_aggrid import AgGrid, GridOptionsBuilder
 from st_aggrid.shared import GridUpdateMode
+from st_aggrid.shared import JsCode
 
 
 # In[3]:
