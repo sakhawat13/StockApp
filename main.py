@@ -88,12 +88,7 @@ if submit:
       pred1 = clf.predict(df4[["Close","Volume","VolAvgNDays","Change"]])
       df4["pred"] = pred1
       df4["Name"] = s
-      def highlight (s):
-        if s.pred == 1:
-          return ['background-color: green'] * len(s)
-        if s.pred == -1:
-          return ['background-color: red'] * len(s)
-      df4.style.apply(highlight, axis=1)
+      
       if df4.shape[0] < num_day:
             st.write("Sorry "+ str(num_day) + " days of data for this company isnt available")
       else:
@@ -110,6 +105,12 @@ if submit:
             options = GridOptionsBuilder.from_dataframe(
                 df, enableRowGroup=True, enableValue=True, enablePivot=True
             )
+            gridOptions.getRowStyle(params) {
+                if (params.data.pred === 1) {
+                    return {'background-color': 'green'}
+                }
+                return null;
+            }            
 
             options.configure_side_bar()
 
