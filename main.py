@@ -59,6 +59,10 @@ option = list(( stock_df["name"]).unique())
 opt = st.multiselect(
      'Which companies would you like?(can chose multiple)',
      (option))
+all_options = st.checkbox("Select all options")
+
+if all_options:
+    opt = option
 
 st.write('You selected:', opt)
 
